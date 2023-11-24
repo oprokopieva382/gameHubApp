@@ -1,5 +1,6 @@
 import { Box, Grid, Paper, useMediaQuery, useTheme } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { NavBar } from "./components/NavBar";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -18,8 +19,8 @@ function App() {
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Item>Nav</Item>
-          </Grid>
+          <NavBar/>
+         </Grid>
 
           {!isMobile ? (
             <>
