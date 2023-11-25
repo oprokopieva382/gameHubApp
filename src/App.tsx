@@ -10,6 +10,7 @@ import { ThemeProvider, styled } from "@mui/material/styles";
 import { NavBar } from "./components/NavBar";
 import { useState } from "react";
 import { darkTheme, lightTheme } from "./theme";
+import { GameGrid } from "./components/GameGrid";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -24,9 +25,9 @@ function App() {
   const [mode, setMode] = useState(false);
   const themeMode = mode ? darkTheme : lightTheme;
 
-   const toggleMode = () => {
-     setMode(!mode);
-   };
+  const toggleMode = () => {
+    setMode(!mode);
+  };
 
   return (
     <>
@@ -35,10 +36,7 @@ function App() {
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <NavBar
-                toggleMode={toggleMode}
-                themeMode={themeMode}
-              />
+              <NavBar toggleMode={toggleMode} themeMode={themeMode} />
             </Grid>
 
             {!isMobile ? (
@@ -47,12 +45,16 @@ function App() {
                   <Item>Aside</Item>
                 </Grid>
                 <Grid item xs={8}>
-                  <Item>Main</Item>
+                  <Item>
+                    <GameGrid />
+                  </Item>
                 </Grid>
               </>
             ) : (
               <Grid item xs={12}>
-                <Item>Main</Item>
+                <Item>
+                  <GameGrid />
+                </Item>
               </Grid>
             )}
           </Grid>
