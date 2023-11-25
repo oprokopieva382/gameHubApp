@@ -9,8 +9,11 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { useState, MouseEvent } from "react";
-import logo from "../assets/logo.webp"
+import { useState, MouseEvent, FC } from "react";
+import logo from "../assets/logo.webp";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { ThemeType } from "../theme";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -52,7 +55,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export const NavBar=()=> {
+type PropsType = {
+  catchMode: () => void;
+  themeMode: ThemeType;
+};
+export const NavBar: FC<PropsType> = ({ catchMode, themeMode }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
 
@@ -87,7 +94,6 @@ export const NavBar=()=> {
     </Menu>
   );
 
- 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -122,7 +128,15 @@ export const NavBar=()=> {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { md: "flex" } }}>
+          <Box sx={{ display: { md: "flex", alignItems: "center" } }}>
+            {themeMode.palette.mode} mode
+            <IconButton sx={{ ml: 1 }} onClick={catchMode} color="inherit">
+              {themeMode.palette.mode === "dark" ? (
+                <Brightness7Icon />
+              ) : (
+                <Brightness4Icon />
+              )}
+            </IconButton>
             <IconButton
               size="large"
               edge="end"
@@ -140,4 +154,4 @@ export const NavBar=()=> {
       {renderMenu}
     </Box>
   );
-}
+};
