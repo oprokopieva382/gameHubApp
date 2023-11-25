@@ -1,5 +1,5 @@
-import { IconButton } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import IconButton from "@mui/material/IconButton";
 import { FC, MouseEvent } from "react";
 
 type PropsType = {

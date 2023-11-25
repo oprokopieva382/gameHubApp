@@ -1,17 +1,18 @@
-
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import { useState, MouseEvent, FC,} from "react";
+import { useState, MouseEvent, FC } from "react";
 import logo from "../assets/logo.webp";
 import { ColorModeSwitch } from "./ColorModeSwitch";
 import { ThemeType } from "../theme";
 import { SearchNavBar } from "./SearchNavBar";
 import { ProfileNavBar } from "./ProfileNavBar";
+import {
+  AppBar,
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 
 export type ThemePropsType = {
   toggleMode: () => void;
