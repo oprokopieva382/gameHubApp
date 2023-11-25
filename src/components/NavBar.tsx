@@ -9,10 +9,9 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { useState, MouseEvent, FC } from "react";
+import { useState, MouseEvent, FC,} from "react";
 import logo from "../assets/logo.webp";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { ColorModeSwitch } from "./ColorModeSwitch";
 import { ThemeType } from "../theme";
 
 const Search = styled("div")(({ theme }) => ({
@@ -45,7 +44,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -55,11 +53,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-type PropsType = {
-  catchMode: () => void;
+export type ThemePropsType = {
+  toggleMode: () => void;
   themeMode: ThemeType;
 };
-export const NavBar: FC<PropsType> = ({ catchMode, themeMode }) => {
+
+export const NavBar: FC<ThemePropsType> = ({ toggleMode, themeMode }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
 
@@ -129,14 +128,10 @@ export const NavBar: FC<PropsType> = ({ catchMode, themeMode }) => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { md: "flex", alignItems: "center" } }}>
-            {themeMode.palette.mode} mode
-            <IconButton sx={{ ml: 1 }} onClick={catchMode} color="inherit">
-              {themeMode.palette.mode === "dark" ? (
-                <Brightness7Icon />
-              ) : (
-                <Brightness4Icon />
-              )}
-            </IconButton>
+            <ColorModeSwitch
+              toggleMode={toggleMode}
+              themeMode={themeMode}
+            />
             <IconButton
               size="large"
               edge="end"

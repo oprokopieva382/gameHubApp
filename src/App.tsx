@@ -9,36 +9,36 @@ import {
 import { ThemeProvider, styled } from "@mui/material/styles";
 import { NavBar } from "./components/NavBar";
 import { useState } from "react";
-import { lightTheme, darkTheme } from "./theme";
+import { darkTheme, lightTheme } from "./theme";
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
-  color: "black",
+  color: theme.palette.mode,
 }));
 
 function App() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [mode, setMode] = useState(false);
-
-  const toggleMode = () => {
-    console.log("Toggle Dark Mode");
-    setMode(!mode);
-  };
   const themeMode = mode ? darkTheme : lightTheme;
-  console.log("Current Theme:", themeMode.palette.mode);
+
+   const toggleMode = () => {
+     setMode(!mode);
+   };
 
   return (
     <>
-      <ThemeProvider key={mode ? "dark" : "light"} theme={themeMode}>
+      <ThemeProvider theme={themeMode}>
         <CssBaseline />
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <NavBar catchMode={toggleMode} themeMode={themeMode} />
+              <NavBar
+                toggleMode={toggleMode}
+                themeMode={themeMode}
+              />
             </Grid>
 
             {!isMobile ? (
