@@ -6,12 +6,12 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useState, MouseEvent, FC,} from "react";
 import logo from "../assets/logo.webp";
 import { ColorModeSwitch } from "./ColorModeSwitch";
 import { ThemeType } from "../theme";
 import { SearchNavBar } from "./SearchNavBar";
+import { ProfileNavBar } from "./ProfileNavBar";
 
 export type ThemePropsType = {
   toggleMode: () => void;
@@ -77,24 +77,14 @@ export const NavBar: FC<ThemePropsType> = ({ toggleMode, themeMode }) => {
           >
             Game Hub
           </Typography>
-         <SearchNavBar/>
+          <SearchNavBar />
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { md: "flex", alignItems: "center" } }}>
-            <ColorModeSwitch
-              toggleMode={toggleMode}
-              themeMode={themeMode}
+            <ColorModeSwitch toggleMode={toggleMode} themeMode={themeMode} />
+            <ProfileNavBar
+              menuId={menuId}
+              handleProfileMenuOpen={handleProfileMenuOpen}
             />
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
