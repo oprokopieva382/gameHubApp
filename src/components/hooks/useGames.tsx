@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
-import { AxiosError } from "axios";
+import { AxiosError, CanceledError } from "axios";
 
-type Game = {
+export type Game = {
   id: number;
   name: string;
+  background_image: string
 };
 
 interface FetchGamesResponse {
@@ -31,6 +32,7 @@ const useGames = () => {
           setError("Can't get games data");
         }
       } catch (err) {
+        if(err instanceof CanceledError) return //*hide cancelled error
         setError((err as AxiosError).message);
       }
     };
