@@ -33,7 +33,7 @@ function App() {
     <>
       <ThemeProvider theme={themeMode}>
         <CssBaseline />
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1, justifyContent: "center" }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <NavBar toggleMode={toggleMode} themeMode={themeMode} />
@@ -41,10 +41,10 @@ function App() {
 
             {!isMobile ? (
               <>
-                <Grid item xs={2}>
+                <Grid item xs={3}>
                   <Item>Aside</Item>
                 </Grid>
-                <Grid item xs={10}>
+                <Grid item xs={9}>
                   <Item>
                     <GameGrid />
                   </Item>
