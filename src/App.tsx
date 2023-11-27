@@ -38,25 +38,26 @@ function App() {
             <Grid item xs={12}>
               <NavBar toggleMode={toggleMode} themeMode={themeMode} />
             </Grid>
-
-            {!isMobile ? (
-              <>
-                <Grid item xs={4}>
-                  <Item>Aside</Item>
-                </Grid>
-                <Grid item xs={8}>
+      
+              {!isMobile ? (
+                <>
+                  <Grid item xs={3}>
+                    <Item>Aside</Item>
+                  </Grid>
+                  <Grid item xs={9}>
+                    <Item>
+                      <GameGrid />
+                    </Item>
+                  </Grid>
+                </>
+              ) : (
+                <Grid item xs={12}>
                   <Item>
                     <GameGrid />
                   </Item>
                 </Grid>
-              </>
-            ) : (
-              <Grid item xs={12}>
-                <Item>
-                  <GameGrid />
-                </Item>
-              </Grid>
-            )}
+              )}
+           
           </Grid>
         </Box>
       </ThemeProvider>

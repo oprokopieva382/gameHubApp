@@ -1,43 +1,20 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
-import { AxiosError } from "axios";
-
-type Game = {
-  id: number;
-  name: string;
-};
-
-interface FetchGamesResponse {
-  count: number;
-  results: Game[];
-}
+import { Grid } from "@mui/material";
+import { useGames } from "./hooks/useGames";
+import { GameCard } from "./GameCard";
 
 export const GameGrid = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        const response = await apiClient.get<FetchGamesResponse>("/games");
-        console.log(response.data);
-        if (response.status === 200) {
-          setGames(response.data.results);
-        } else {
-          setError("Can't get games data");
-        }
-      } catch (err) {
-        setError((err as AxiosError).message);
-      }
-    };
-    fetchGames();
-  }, []);
+  const { games, error } = useGames();
   return (
     <>
       <p>{error && error}</p>
-      <ul>
-        {games && games.map((game) => <li key={game.id}>{game.name}</li>)}
-      </ul>
+      <Grid container sx={{ flexGrow: 1, columnGap: 5, rowGap: 5, justifyContent: "center"}}>
+        {games &&
+          games.map((game) => (
+            <Grid key={game.id} item xs={12} sm={6} md={4} lg={3}>
+              <GameCard game={game} />
+            </Grid>
+          ))}
+      </Grid>
     </>
   );
 };
