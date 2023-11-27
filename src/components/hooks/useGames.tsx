@@ -5,9 +5,15 @@ import { AxiosError, CanceledError } from "axios";
 export type Game = {
   id: number;
   name: string;
-  background_image: string
+  background_image: string;
+  parent_platforms: { platform: Platform }[];
 };
 
+export interface Platform {
+  id: number;
+  name: string;
+  slug: string;
+}
 interface FetchGamesResponse {
   count: number;
   results: Game[];
@@ -32,7 +38,7 @@ const useGames = () => {
           setError("Can't get games data");
         }
       } catch (err) {
-        if(err instanceof CanceledError) return //*hide cancelled error
+        if (err instanceof CanceledError) return; //*hide cancelled error
         setError((err as AxiosError).message);
       }
     };
