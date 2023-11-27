@@ -8,9 +8,9 @@ type GameCardType ={
 
 export const GameCard: FC<GameCardType> = ({game}) => {
     return (
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 450 }}>
         <CardMedia
-          sx={{ height: 140 }}
+          sx={{ height: 160 }}
           image={game.background_image}
           title={game.name}
         />

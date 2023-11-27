@@ -80,7 +80,13 @@ export const NavBar: FC<ThemePropsType> = ({ toggleMode, themeMode }) => {
           </Typography>
           <SearchNavBar />
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { md: "flex", alignItems: "center" } }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "row" }, // Change the direction for small screens
+              alignItems: "center",
+            }}
+          >
             <ColorModeSwitch toggleMode={toggleMode} themeMode={themeMode} />
             <ProfileNavBar
               menuId={menuId}

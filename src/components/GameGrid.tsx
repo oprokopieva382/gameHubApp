@@ -10,7 +10,7 @@ export const GameGrid = () => {
       <Grid container sx={{ flexGrow: 1, columnGap: 5, rowGap: 5, justifyContent: "center"}}>
         {games &&
           games.map((game) => (
-            <Grid key={game.id} xs={12} sm={6} md={4} lg={3}>
+            <Grid key={game.id} item xs={12} sm={6} md={4} lg={3}>
               <GameCard game={game} />
             </Grid>
           ))}
