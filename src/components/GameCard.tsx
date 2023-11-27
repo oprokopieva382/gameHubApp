@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import { PlatformIconList } from "./PlatformIconList";
 import { CriticScore } from "./CriticScore";
+import getCroppedImageUrl from "../services/getCroppedImageUrl";
+
 
 type GameCardType = {
   game: Game;
@@ -21,7 +23,7 @@ export const GameCard: FC<GameCardType> = ({ game }) => {
     <Card sx={{ maxWidth: 450, boxShadow: theme.shadows[6] }}>
       <CardMedia
         sx={{ height: 160 }}
-        image={game.background_image}
+        image={getCroppedImageUrl(game.background_image)}
         title={game.name}
       />
       <CardContent>

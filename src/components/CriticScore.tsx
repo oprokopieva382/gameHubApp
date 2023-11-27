@@ -13,6 +13,7 @@ export const CriticScore: FC<CriticScorePropsType> = ({ score }) => {
       <Badge
         sx={{
           fontSize: "14px",
+          fontWeight: "bold",
           padding: 0.7,
           background: color,
           borderRadius: 1,
