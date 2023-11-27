@@ -45,8 +45,8 @@ export const PlatformIconList: FC<PlatformPropsType> = ({ platforms }) => (
             component={IconComponent}
             key={platform.slug}
             sx={{
-              color: "lightgray",
-              margin: "5px", 
+              color: "#717789",
+              marginRight: "5px",
             }}
           />
         );
