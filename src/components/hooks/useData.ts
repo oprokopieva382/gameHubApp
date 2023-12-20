@@ -9,7 +9,7 @@ interface FetchResponse<T>{
 }
 
 const useData = <T>(endpoint: string) => {
-  const [genres, setGenres] = useState<T[]>([]);
+  const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -25,7 +25,7 @@ const useData = <T>(endpoint: string) => {
         console.log(response.data);
         if (response.status === 200) {
           setIsLoading(false);
-          setGenres(response.data.results);
+          setData(response.data.results);
         } else {
           setError("Can't get games data");
           setIsLoading(false);
@@ -41,7 +41,7 @@ const useData = <T>(endpoint: string) => {
     return () => controller.abort(); //*clean up function
   }, []);
 
-  return { genres, error, isLoading };
+  return { data, error, isLoading };
 };
 
 export { useData };
