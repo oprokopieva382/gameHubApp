@@ -11,6 +11,7 @@ import { NavBar } from "./components/NavBar";
 import { useState } from "react";
 import { darkTheme, lightTheme } from "./theme";
 import { GameGrid } from "./components/GameGrid";
+import { GenreList } from "./components/GenreList";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -38,26 +39,27 @@ function App() {
             <Grid item xs={12}>
               <NavBar toggleMode={toggleMode} themeMode={themeMode} />
             </Grid>
-      
-              {!isMobile ? (
-                <>
-                  <Grid item xs={3}>
-                    <Item>Aside</Item>
-                  </Grid>
-                  <Grid item xs={9}>
-                    <Item>
-                      <GameGrid />
-                    </Item>
-                  </Grid>
-                </>
-              ) : (
-                <Grid item xs={12}>
+
+            {!isMobile ? (
+              <>
+                <Grid item xs={2}>
+                  <Item>
+                    <GenreList />
+                  </Item>
+                </Grid>
+                <Grid item xs={10}>
                   <Item>
                     <GameGrid />
                   </Item>
                 </Grid>
-              )}
-           
+              </>
+            ) : (
+              <Grid item xs={12}>
+                <Item>
+                  <GameGrid />
+                </Item>
+              </Grid>
+            )}
           </Grid>
         </Box>
       </ThemeProvider>

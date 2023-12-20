@@ -13,7 +13,7 @@ interface FetchGenreResponse {
 }
 
 const useGenre = () => {
-  const [genre, setGenre] = useState<Genre[]>([]);
+  const [genres, setGenres] = useState<Genre[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -29,7 +29,7 @@ const useGenre = () => {
         console.log(response.data);
         if (response.status === 200) {
           setIsLoading(false);
-          setGenre(response.data.results);
+          setGenres(response.data.results);
         } else {
           setError("Can't get games data");
           setIsLoading(false);
@@ -45,7 +45,7 @@ const useGenre = () => {
     return () => controller.abort(); //*clean up function
   }, []);
 
-  return { genre, error, isLoading };
+  return { genres, error, isLoading };
 };
 
 export { useGenre };
