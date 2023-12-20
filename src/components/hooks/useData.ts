@@ -2,45 +2,38 @@ import { useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
 import { AxiosError, CanceledError } from "axios";
 
-export type Game = {
-  id: number;
-  name: string;
-  background_image: string;
-  parent_platforms: { platform: Platform }[];
-  metacritic: number
-};
 
-export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
-interface FetchGamesResponse {
+interface FetchResponse<T>{
   count: number;
-  results: Game[];
+  results: T[];
 }
 
-const useGames = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
+const useData = <T>(endpoint: string) => {
+  const [data, setData] = useState<T[]>([]);
+  const [error, setError] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const controller = new AbortController();
 
     const fetchGames = async () => {
       try {
-        const response = await apiClient.get<FetchGamesResponse>("/games", {
+        setIsLoading(true);
+        const response = await apiClient.get<FetchResponse<T>>(endpoint, {
           signal: controller.signal,
         });
         console.log(response.data);
         if (response.status === 200) {
-          setGames(response.data.results);
+          setIsLoading(false);
+          setData(response.data.results);
         } else {
           setError("Can't get games data");
+          setIsLoading(false);
         }
       } catch (err) {
         if (err instanceof CanceledError) return; //*hide cancelled error
         setError((err as AxiosError).message);
+        setIsLoading(false);
       }
     };
     fetchGames();
@@ -48,7 +41,7 @@ const useGames = () => {
     return () => controller.abort(); //*clean up function
   }, []);
 
-  return { games, error };
+  return { data, error, isLoading };
 };
 
-export { useGames };
+export { useData };
