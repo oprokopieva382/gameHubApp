@@ -14,7 +14,11 @@ export const GameGrid = () => {
         sx={{ flexGrow: 1, columnGap: 5, rowGap: 5, justifyContent: "center" }}
       >
         {isLoading &&
-          skeletons.map((skeleton) => <CardSkeleton key={skeleton} />)}
+          skeletons.map((skeleton, i) => (
+            <Grid key={i} item xs={12} sm={6} md={4} lg={3}>
+              <CardSkeleton key={skeleton} />{" "}
+            </Grid>
+          ))}
         {data &&
           data.map((game) => (
             <Grid key={game.id} item xs={12} sm={6} md={4} lg={3}>
