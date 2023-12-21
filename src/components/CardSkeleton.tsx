@@ -10,8 +10,8 @@ import {
 export const CardSkeleton = () => {
   const theme = useTheme();
   return (
-    <Card sx={{ width: 300, boxShadow: theme.shadows[6] }}>
-      <Skeleton variant="rectangular" height={160} width={300}/>
+    <Card sx={{ boxShadow: theme.shadows[6]}}>
+      <Skeleton variant="rectangular" height={160}/>
       <CardContent sx={{ height: 100 }}>
         <Typography gutterBottom variant="h6" component="div">
           <Skeleton variant="text" />
