@@ -5,7 +5,7 @@ import { CardSkeleton } from "./CardSkeleton";
 
 export const GameGrid = () => {
   const { data, error, isLoading } = useGames();
-  const skeletons = [1, 2, 3, 4, 5, 6, 7];
+  const skeletons = [1, 2, 3, 4, 5, 6, 7,8];
   return (
     <>
       <p>{error && error}</p>
