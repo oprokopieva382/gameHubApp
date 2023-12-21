@@ -42,10 +42,10 @@ function App() {
 
             {!isMobile ? (
               <>
-                <Grid item xs={2}>
+                <Grid item xs={2.5}>
                   <GenreList />
                 </Grid>
-                <Grid item xs={10}>
+                <Grid item xs={9.5}>
                   <Item>
                     <GameGrid />
                   </Item>

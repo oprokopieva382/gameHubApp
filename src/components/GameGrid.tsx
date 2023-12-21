@@ -16,7 +16,7 @@ export const GameGrid = () => {
         {isLoading &&
           skeletons.map((skeleton, i) => (
             <Grid key={i} item xs={12} sm={6} md={4} lg={3}>
-              <CardSkeleton key={skeleton} />{" "}
+              <CardSkeleton key={skeleton} />
             </Grid>
           ))}
         {data &&
