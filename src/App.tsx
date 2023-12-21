@@ -12,6 +12,8 @@ import { useState } from "react";
 import { darkTheme, lightTheme } from "./theme";
 import { GameGrid } from "./components/GameGrid";
 import { GenreList } from "./components/GenreList";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -48,11 +50,12 @@ function App() {
                 <Grid item xs={9.5}>
                   <Item>
                     <GameGrid />
+                    <ToastContainer />
                   </Item>
                 </Grid>
               </>
             ) : (
-              <Grid item xs={12}>
+              <Grid item xs={11} sx={{ margin: "0 auto" }}>
                 <Item>
                   <GameGrid />
                 </Item>
