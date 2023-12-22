@@ -40,11 +40,6 @@ export const GameCard: FC<GameCardType> = ({ game }) => {
         />
         <CriticScore score={game.metacritic} />
       </Box>
-
-      {/* <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
-        </CardActions> */}
     </Card>
   );
 };
