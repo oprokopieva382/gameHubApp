@@ -57,9 +57,9 @@ function App() {
                   <PlatformSelector />
                   <Item>
                     <GameGrid selectedGenre={selectedGenre} />
-                    <ToastContainer />
                   </Item>
                 </Grid>
+                <ToastContainer />
               </>
             ) : (
               <Grid item xs={11} sx={{ margin: "0 auto" }}>
