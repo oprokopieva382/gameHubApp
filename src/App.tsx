@@ -49,6 +49,7 @@ function App() {
                 <Grid item xs={2.5}>
                   <GenreList
                     setSelectedGenre={setSelectedGenre}
+                    selectedGenre={selectedGenre}
                   />
                 </Grid>
                 <Grid item xs={9.5}>

@@ -10,9 +10,10 @@ import CircleLoader from "react-spinners/CircleLoader";
 import { errorMessage } from "../utils/notification";
 import { FC } from "react";
 
-const StyledButton = styledMUI(Button)`
+const StyledButton = styledMUI(Button)<{ customColor?: string }>`
 text-transform: lowercase;
-text-align: left;
+margin: 0 auto;
+
   @media (min-width: 600px) {
     font-size: 14px;
   }
@@ -24,6 +25,9 @@ text-align: left;
   @media (min-width: 1280px) {
     font-size: 18px;
   }
+  &.MuiButton-root {
+    color: ${(props) => (props.customColor ? props.customColor : "inherit")};
+  }
 `;
 const CenteredBox = styledMUI(Box)`
   display: flex;
@@ -33,10 +37,11 @@ const CenteredBox = styledMUI(Box)`
 `;
 
 interface GenreListProps {
-  setSelectedGenre: (genre: Genre) => void
+  setSelectedGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-export const GenreList: FC<GenreListProps> = ({ setSelectedGenre }) => {
+export const GenreList: FC<GenreListProps> = ({ setSelectedGenre, selectedGenre }) => {
   const { data, isLoading, error } = useGenre();
 
   if (isLoading)
@@ -67,6 +72,7 @@ export const GenreList: FC<GenreListProps> = ({ setSelectedGenre }) => {
             }}
           ></CardMedia>
           <StyledButton
+            customColor={genre.id === selectedGenre?.id ? "#90EE90" : undefined}
             onClick={() => {
               setSelectedGenre(genre);
             }}
