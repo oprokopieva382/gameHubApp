@@ -3,9 +3,12 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useState } from "react";
+import { usePlatforms } from "./hooks/usePlatforms";
 
 export const PlatformSelector = () => {
   const [platform, setPlatform] = useState("");
+
+  const { data } = usePlatforms();
 
   const handleChange = (event: SelectChangeEvent) => {
     setPlatform(event.target.value);
@@ -24,9 +27,11 @@ export const PlatformSelector = () => {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        {data.map((platform) => (
+          <MenuItem value={platform.name} key={platform.id}>
+            {platform.name}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );
