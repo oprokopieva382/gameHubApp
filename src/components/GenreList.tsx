@@ -1,4 +1,4 @@
-import { useGenre } from "./hooks/useGenre";
+import { Genre, useGenre } from "./hooks/useGenre";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -8,9 +8,11 @@ import getCroppedImageUrl from "./../services/getCroppedImageUrl";
 import { styled as styledMUI } from "@mui/system";
 import CircleLoader from "react-spinners/CircleLoader";
 import { errorMessage } from "../utils/notification";
+import { FC } from "react";
 
 const StyledButton = styledMUI(Button)`
 text-transform: lowercase;
+text-align: left;
   @media (min-width: 600px) {
     font-size: 14px;
   }
@@ -30,7 +32,11 @@ const CenteredBox = styledMUI(Box)`
   height: 100vh;
 `;
 
-export const GenreList = () => {
+interface GenreListProps {
+  setSelectedGenre: (genre: Genre) => void
+}
+
+export const GenreList: FC<GenreListProps> = ({ setSelectedGenre }) => {
   const { data, isLoading, error } = useGenre();
 
   if (isLoading)
@@ -60,7 +66,13 @@ export const GenreList = () => {
               borderRadius: 1,
             }}
           ></CardMedia>
-          <StyledButton>{genre.name}</StyledButton>
+          <StyledButton
+            onClick={() => {
+              setSelectedGenre(genre);
+            }}
+          >
+            {genre.name}
+          </StyledButton>
         </ListItem>
       ))}
     </List>
