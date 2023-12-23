@@ -15,6 +15,7 @@ import { GenreList } from "./components/GenreList";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Genre } from "./components/hooks/useGenre";
+import { PlatformSelector } from "./components/PlatformSelector";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -53,6 +54,7 @@ function App() {
                   />
                 </Grid>
                 <Grid item xs={9.5}>
+                  <PlatformSelector />
                   <Item>
                     <GameGrid selectedGenre={selectedGenre} />
                     <ToastContainer />
@@ -61,6 +63,7 @@ function App() {
               </>
             ) : (
               <Grid item xs={11} sx={{ margin: "0 auto" }}>
+                <PlatformSelector />
                 <Item>
                   <GameGrid selectedGenre={selectedGenre} />
                 </Item>

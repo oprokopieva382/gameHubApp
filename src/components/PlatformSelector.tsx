@@ -5,21 +5,21 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useState } from "react";
 
 export const PlatformSelector = () => {
-  const [age, setAge] = useState("");
+  const [platform, setPlatform] = useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
+    setPlatform(event.target.value);
   };
 
   return (
     <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-      <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
+      <InputLabel id="simple-select-standard-label">Platform</InputLabel>
       <Select
-        labelId="demo-simple-select-standard-label"
-        id="demo-simple-select-standard"
-        value={age}
+        labelId="simple-select-standard-label"
+        id="simple-select-standard"
+        value={platform}
         onChange={handleChange}
-        label="Age"
+        label="Platform"
       >
         <MenuItem value="">
           <em>None</em>
