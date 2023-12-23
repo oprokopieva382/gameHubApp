@@ -3,14 +3,14 @@ import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import getCroppedImageUrl from "./../services/getCroppedImageUrl";
 import { styled as styledMUI } from "@mui/system";
 import CircleLoader from "react-spinners/CircleLoader";
 import { errorMessage } from "../utils/notification";
 
-
-const StyledTypography = styledMUI(Typography)`
+const StyledButton = styledMUI(Button)`
+text-transform: lowercase;
   @media (min-width: 600px) {
     font-size: 14px;
   }
@@ -60,9 +60,9 @@ export const GenreList = () => {
               borderRadius: 1,
             }}
           ></CardMedia>
-          <StyledTypography>{genre.name}</StyledTypography>
+          <StyledButton>{genre.name}</StyledButton>
         </ListItem>
       ))}
-        </List>
+    </List>
   );
 };
