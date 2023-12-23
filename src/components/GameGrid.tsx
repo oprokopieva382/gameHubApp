@@ -2,10 +2,16 @@ import { Grid } from "@mui/material";
 import { useGames } from "./hooks/useGames";
 import { GameCard } from "./GameCard";
 import { CardSkeleton } from "./CardSkeleton";
+import { Genre } from "./hooks/useGenre";
+import { FC } from "react";
 
-export const GameGrid = () => {
-  const { data, error, isLoading } = useGames();
-  const skeletons = [1, 2, 3, 4, 5, 6, 7,8];
+interface GameGridProps {
+  selectedGenre: Genre | null;
+}
+
+export const GameGrid: FC<GameGridProps> = ({ selectedGenre }) => {
+  const { data, error, isLoading } = useGames(selectedGenre);
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <>
       <p>{error && error}</p>

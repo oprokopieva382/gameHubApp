@@ -14,6 +14,7 @@ import { GameGrid } from "./components/GameGrid";
 import { GenreList } from "./components/GenreList";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Genre } from "./components/hooks/useGenre";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -26,6 +27,7 @@ function App() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [mode, setMode] = useState(false);
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null)
   const themeMode = mode ? darkTheme : lightTheme;
 
   const toggleMode = () => {
@@ -45,11 +47,14 @@ function App() {
             {!isMobile ? (
               <>
                 <Grid item xs={2.5}>
-                  <GenreList />
+                  <GenreList
+                    setSelectedGenre={setSelectedGenre}
+                    selectedGenre={selectedGenre}
+                  />
                 </Grid>
                 <Grid item xs={9.5}>
                   <Item>
-                    <GameGrid />
+                    <GameGrid selectedGenre={selectedGenre} />
                     <ToastContainer />
                   </Item>
                 </Grid>
@@ -57,7 +62,7 @@ function App() {
             ) : (
               <Grid item xs={11} sx={{ margin: "0 auto" }}>
                 <Item>
-                  <GameGrid />
+                  <GameGrid selectedGenre={selectedGenre} />
                 </Item>
               </Grid>
             )}

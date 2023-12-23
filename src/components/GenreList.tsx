@@ -1,16 +1,19 @@
-import { useGenre } from "./hooks/useGenre";
+import { Genre, useGenre } from "./hooks/useGenre";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import getCroppedImageUrl from "./../services/getCroppedImageUrl";
 import { styled as styledMUI } from "@mui/system";
 import CircleLoader from "react-spinners/CircleLoader";
 import { errorMessage } from "../utils/notification";
+import { FC } from "react";
 
+const StyledButton = styledMUI(Button)<{ customColor?: string }>`
+text-transform: lowercase;
+margin: 0 auto;
 
-const StyledTypography = styledMUI(Typography)`
   @media (min-width: 600px) {
     font-size: 14px;
   }
@@ -22,6 +25,9 @@ const StyledTypography = styledMUI(Typography)`
   @media (min-width: 1280px) {
     font-size: 18px;
   }
+  &.MuiButton-root {
+    color: ${(props) => (props.customColor ? props.customColor : "inherit")};
+  }
 `;
 const CenteredBox = styledMUI(Box)`
   display: flex;
@@ -30,7 +36,12 @@ const CenteredBox = styledMUI(Box)`
   height: 100vh;
 `;
 
-export const GenreList = () => {
+interface GenreListProps {
+  setSelectedGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
+}
+
+export const GenreList: FC<GenreListProps> = ({ setSelectedGenre, selectedGenre }) => {
   const { data, isLoading, error } = useGenre();
 
   if (isLoading)
@@ -60,9 +71,16 @@ export const GenreList = () => {
               borderRadius: 1,
             }}
           ></CardMedia>
-          <StyledTypography>{genre.name}</StyledTypography>
+          <StyledButton
+            customColor={genre.id === selectedGenre?.id ? "#90EE90" : undefined}
+            onClick={() => {
+              setSelectedGenre(genre);
+            }}
+          >
+            {genre.name}
+          </StyledButton>
         </ListItem>
       ))}
-        </List>
+    </List>
   );
 };
