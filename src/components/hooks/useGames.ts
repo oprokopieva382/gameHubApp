@@ -10,12 +10,6 @@ export type Game = {
   metacritic: number;
 };
 
-// export interface Platform {
-//   id: number;
-//   name: string;
-//   slug: string;
-// }
-
 const useGames = (selectedGenre: Genre | null, platform: Platform | null) =>
   useData<Game>(
     "/games",
