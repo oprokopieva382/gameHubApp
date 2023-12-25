@@ -25,12 +25,16 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.mode,
 }));
 
+export interface GameQuery {
+  genre: Genre | null;
+  platform: Platform | null;
+}
+
 function App() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [mode, setMode] = useState(false);
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [platform, setPlatform] = useState<Platform | null>(null);
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   const themeMode = mode ? darkTheme : lightTheme;
 
@@ -52,20 +56,21 @@ function App() {
               <>
                 <Grid item xs={2.5}>
                   <GenreList
-                    setSelectedGenre={setSelectedGenre}
-                    selectedGenre={selectedGenre}
+                    setSelectedGenre={(genre) =>
+                      setGameQuery({ ...gameQuery, genre })
+                    }
+                    selectedGenre={gameQuery.genre}
                   />
                 </Grid>
                 <Grid item xs={9.5}>
                   <PlatformSelector
-                    platform={platform}
-                    setPlatform={setPlatform}
+                    platform={gameQuery.platform}
+                    setPlatform={(platform) =>
+                      setGameQuery({ ...gameQuery, platform })
+                    }
                   />
                   <Item>
-                    <GameGrid
-                      selectedGenre={selectedGenre}
-                      platform={platform}
-                    />
+                    <GameGrid gameQuery={gameQuery} />
                   </Item>
                 </Grid>
                 <ToastContainer />
@@ -73,11 +78,13 @@ function App() {
             ) : (
               <Grid item xs={11} sx={{ margin: "0 auto" }}>
                 <PlatformSelector
-                  platform={platform}
-                  setPlatform={setPlatform}
+                  platform={gameQuery.platform}
+                  setPlatform={(platform) =>
+                    setGameQuery({ ...gameQuery, platform })
+                  }
                 />
                 <Item>
-                  <GameGrid selectedGenre={selectedGenre} platform={platform} />
+                  <GameGrid gameQuery={gameQuery} />
                 </Item>
               </Grid>
             )}
