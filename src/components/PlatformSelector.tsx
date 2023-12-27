@@ -29,7 +29,7 @@ export const PlatformSelector: FC<PlatformSelectorProps> = ({
   return (
     <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
       <InputLabel id="simple-select-standard-label">
-        Platform
+        Platforms
       </InputLabel>
       <Select
         labelId="simple-select-standard-label"
