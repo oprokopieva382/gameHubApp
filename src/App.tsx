@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Genre } from "./components/hooks/useGenre";
 import { PlatformSelector } from "./components/PlatformSelector";
 import { Platform } from "./components/hooks/usePlatforms";
+import { SortSelector } from "./components/SortSelector";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -69,6 +70,7 @@ function App() {
                       setGameQuery({ ...gameQuery, platform })
                     }
                   />
+                  <SortSelector />
                   <Item>
                     <GameGrid gameQuery={gameQuery} />
                   </Item>
@@ -83,6 +85,7 @@ function App() {
                     setGameQuery({ ...gameQuery, platform })
                   }
                 />
+                <SortSelector />
                 <Item>
                   <GameGrid gameQuery={gameQuery} />
                 </Item>
