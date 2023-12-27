@@ -1,8 +1,9 @@
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material/styles";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 
-const Search = styled("div")(({ theme }) => ({
+const Search = styled("form")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -40,16 +41,32 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+interface SearchNavBar {
+  onSubmit?: (searchText: string)=> void
+}
 
-export const SearchNavBar = () => {
+export const SearchNavBar: FC<SearchNavBar> = ({ onSubmit }) => {
+  const [formData, setFormData] = useState("");
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormData(event.target.value);
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onSubmit && onSubmit(formData);
+  };
+
   return (
     <>
-      <Search>
+      <Search onSubmit={handleSubmit}>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
-          placeholder="Search…"
+          value={formData}
+          onChange={handleChange}
+          placeholder="Search game…"
           inputProps={{ "aria-label": "search" }}
         />
       </Search>
