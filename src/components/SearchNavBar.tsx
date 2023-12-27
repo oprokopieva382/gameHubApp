@@ -42,7 +42,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 interface SearchNavBar {
-  onSubmit?: (searchText: string)=> void
+  onSubmit?: (searchText: string) => void;
 }
 
 export const SearchNavBar: FC<SearchNavBar> = ({ onSubmit }) => {
@@ -58,18 +58,16 @@ export const SearchNavBar: FC<SearchNavBar> = ({ onSubmit }) => {
   };
 
   return (
-    <>
-      <Search onSubmit={handleSubmit}>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          value={formData}
-          onChange={handleChange}
-          placeholder="Search game…"
-          inputProps={{ "aria-label": "search" }}
-        />
-      </Search>
-    </>
+    <Search onSubmit={handleSubmit}>
+      <SearchIconWrapper>
+        <SearchIcon />
+      </SearchIconWrapper>
+      <StyledInputBase
+        value={formData}
+        onChange={handleChange}
+        placeholder="Search game…"
+        inputProps={{ "aria-label": "search" }}
+      />
+    </Search>
   );
 };

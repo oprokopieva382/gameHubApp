@@ -16,10 +16,10 @@ export const GameGrid: FC<GameGridProps> = ({ gameQuery }) => {
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
   useEffect(() => {
-     if (error || (data && data.length === 0)) {
+     if (error) {
        errorMessage("Can't find the game");
      }
-  }, [error, data]);
+  }, [error]);
 
   return (
     <Grid

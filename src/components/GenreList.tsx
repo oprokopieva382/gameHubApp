@@ -8,7 +8,7 @@ import getCroppedImageUrl from "./../services/getCroppedImageUrl";
 import { styled as styledMUI } from "@mui/system";
 import CircleLoader from "react-spinners/CircleLoader";
 import { errorMessage } from "../utils/notification";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 const StyledButton = styledMUI(Button)<{ customcolor?: string }>`
 text-transform: lowercase;
@@ -41,8 +41,17 @@ interface GenreListProps {
   selectedGenre: Genre | null;
 }
 
-export const GenreList: FC<GenreListProps> = ({ setSelectedGenre, selectedGenre }) => {
+export const GenreList: FC<GenreListProps> = ({
+  setSelectedGenre,
+  selectedGenre,
+}) => {
   const { data, isLoading, error } = useGenre();
+
+  useEffect(() => {
+    if (error) {
+      errorMessage("Something went wrong");
+    }
+  }, [error]);
 
   if (isLoading)
     return (
@@ -51,10 +60,7 @@ export const GenreList: FC<GenreListProps> = ({ setSelectedGenre, selectedGenre 
       </CenteredBox>
     );
 
-  if (error) {
-    errorMessage("Something went wrong");
-    return null;
-  }
+
 
   return (
     <List>

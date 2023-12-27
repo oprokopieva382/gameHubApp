@@ -22,7 +22,6 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?:
           signal: controller.signal,
           ...requestConfig
         });
-        console.log(response.data);
         if (response.status === 200) {
           setIsLoading(false);
           setData(response.data.results);
