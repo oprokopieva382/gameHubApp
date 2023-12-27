@@ -1,11 +1,25 @@
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import  {useState}  from "react";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { FC } from "react";
+interface SortSelectorProps {
+  sortOrder: string;
+  onSelectSortOrder: (sortOrder: string) => void;
+}
 
-export const SortSelector = () => {
-  const [sortSelect, setSortSelect] = useState("Relevant");
+export const SortSelector: FC<SortSelectorProps> = ({
+  onSelectSortOrder,
+  sortOrder,
+}) => {
+  const sortOrders = [
+    { value: "", label: "Relevance" },
+    { value: "-added", label: "Date added" },
+    { value: "name", label: "Name" },
+    { value: "-released", label: "Release date" },
+    { value: "-metacritic", label: "Popularity" },
+    { value: "-rating", label: "Average rating" },
+  ];
   return (
     <FormControl variant="standard" sx={{ m: 1, minWidth: 180 }}>
       <InputLabel id="simple-select-standard-label">
@@ -14,19 +28,22 @@ export const SortSelector = () => {
       <Select
         labelId="simple-select-standard-label"
         id="simple-select-standard"
-        // value="Relevant"
-        // onChange={() => {}}
+        value={sortOrder || ""}
+        onChange={(e) => onSelectSortOrder(e.target.value as string)}
         label="Order by: Relevance"
       >
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem>Relevant</MenuItem>
-        <MenuItem>Date added</MenuItem>
-        <MenuItem>Name</MenuItem>
-        <MenuItem>Release date</MenuItem>
-        <MenuItem>Popularity</MenuItem>
-        <MenuItem>Average rating</MenuItem>
+        {sortOrders.map((order) => (
+          <MenuItem
+            value={order.value}
+            // onClick={() => onSelectSortOrder(order.value)}
+            key={order.value}
+          >
+            {order.label}
+          </MenuItem>
+        ))}
         ))
       </Select>
     </FormControl>
