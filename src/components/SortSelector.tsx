@@ -1,7 +1,7 @@
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import { FC } from "react";
 interface SortSelectorProps {
   sortOrder: string;
@@ -13,7 +13,6 @@ export const SortSelector: FC<SortSelectorProps> = ({
   sortOrder,
 }) => {
   const sortOrders = [
-    { value: "", label: "Relevance" },
     { value: "-added", label: "Date added" },
     { value: "name", label: "Name" },
     { value: "-released", label: "Release date" },
@@ -23,14 +22,14 @@ export const SortSelector: FC<SortSelectorProps> = ({
   return (
     <FormControl variant="standard" sx={{ m: 1, minWidth: 180 }}>
       <InputLabel id="simple-select-standard-label">
-        Order by: Relevance
+        Order by
       </InputLabel>
       <Select
         labelId="simple-select-standard-label"
         id="simple-select-standard"
         value={sortOrder || ""}
         onChange={(e) => onSelectSortOrder(e.target.value as string)}
-        label="Order by: Relevance"
+        label="Order by"
       >
         <MenuItem value="">
           <em>None</em>
@@ -38,7 +37,6 @@ export const SortSelector: FC<SortSelectorProps> = ({
         {sortOrders.map((order) => (
           <MenuItem
             value={order.value}
-            // onClick={() => onSelectSortOrder(order.value)}
             key={order.value}
           >
             {order.label}
