@@ -4,7 +4,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Platform, usePlatforms } from "./hooks/usePlatforms";
 import { errorMessage } from "../utils/notification";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 interface PlatformSelectorProps {
   platform: Platform | null;
@@ -25,12 +25,15 @@ export const PlatformSelector: FC<PlatformSelectorProps> = ({
     }
   };
 
-  error && errorMessage("Something went wrong");
+  useEffect(() => {
+    if (error) {
+      errorMessage("Something went wrong");
+    }
+  }, [error]);
+
   return (
     <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-      <InputLabel id="simple-select-standard-label">
-        Platforms
-      </InputLabel>
+      <InputLabel id="simple-select-standard-label">Platforms</InputLabel>
       <Select
         labelId="simple-select-standard-label"
         id="simple-select-standard"

@@ -50,6 +50,7 @@ function App() {
       <ThemeProvider theme={themeMode}>
         <CssBaseline />
         <Box sx={{ flexGrow: 1 }}>
+          <ToastContainer />
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <NavBar
@@ -88,7 +89,6 @@ function App() {
                     <GameGrid gameQuery={gameQuery} />
                   </Item>
                 </Grid>
-                <ToastContainer />
               </>
             ) : (
               <Grid item xs={11} sx={{ margin: "0 auto" }}>
