@@ -9,6 +9,7 @@ import { styled as styledMUI } from "@mui/system";
 import CircleLoader from "react-spinners/CircleLoader";
 import { errorMessage } from "../utils/notification";
 import { FC, useEffect } from "react";
+import Typography from "@mui/material/Typography";
 
 const StyledButton = styledMUI(Button)<{ customcolor?: string }>`
 text-transform: lowercase;
@@ -64,6 +65,9 @@ export const GenreList: FC<GenreListProps> = ({
 
   return (
     <List>
+      <Typography variant="h5" style={{ padding: "10px"}}>
+        Genres
+      </Typography>
       {data.map((genre) => (
         <ListItem key={genre.id}>
           <CardMedia
@@ -75,6 +79,7 @@ export const GenreList: FC<GenreListProps> = ({
               height: "32px",
               marginRight: "9px",
               borderRadius: 1,
+              objectFit: "cover",
             }}
           ></CardMedia>
           <StyledButton
