@@ -18,6 +18,7 @@ import { Genre } from "./components/hooks/useGenre";
 import { PlatformSelector } from "./components/PlatformSelector";
 import { Platform } from "./components/hooks/usePlatforms";
 import { SortSelector } from "./components/SortSelector";
+import { GameHeading } from "./components/GameHeading";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -46,52 +47,33 @@ function App() {
   };
 
   return (
-    <>
-      <ThemeProvider theme={themeMode}>
-        <CssBaseline />
-        <Box sx={{ flexGrow: 1 }}>
-          <ToastContainer />
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <NavBar
-                toggleMode={toggleMode}
-                themeMode={themeMode}
-                onSubmit={(searchText) =>
-                  setGameQuery({ ...gameQuery, searchText })
-                }
-              />
-            </Grid>
+    <ThemeProvider theme={themeMode}>
+      <CssBaseline />
+      <Box sx={{ flexGrow: 1 }}>
+        <ToastContainer />
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <NavBar
+              toggleMode={toggleMode}
+              themeMode={themeMode}
+              onSubmit={(searchText) =>
+                setGameQuery({ ...gameQuery, searchText })
+              }
+            />
+          </Grid>
 
-            {!isMobile ? (
-              <>
-                <Grid item xs={2.5}>
-                  <GenreList
-                    setSelectedGenre={(genre) =>
-                      setGameQuery({ ...gameQuery, genre })
-                    }
-                    selectedGenre={gameQuery.genre}
-                  />
-                </Grid>
-                <Grid item xs={9.5}>
-                  <PlatformSelector
-                    platform={gameQuery.platform}
-                    setPlatform={(platform) =>
-                      setGameQuery({ ...gameQuery, platform })
-                    }
-                  />
-                  <SortSelector
-                    sortOrder={gameQuery.sortOrder}
-                    onSelectSortOrder={(sortOrder) =>
-                      setGameQuery({ ...gameQuery, sortOrder })
-                    }
-                  />
-                  <Item>
-                    <GameGrid gameQuery={gameQuery} />
-                  </Item>
-                </Grid>
-              </>
-            ) : (
-              <Grid item xs={11} sx={{ margin: "0 auto" }}>
+          {!isMobile ? (
+            <>
+              <Grid item xs={2.5}>
+                <GenreList
+                  setSelectedGenre={(genre) =>
+                    setGameQuery({ ...gameQuery, genre })
+                  }
+                  selectedGenre={gameQuery.genre}
+                />
+              </Grid>
+              <Grid item xs={9.5}>
+                <GameHeading gameQuery={gameQuery} />
                 <PlatformSelector
                   platform={gameQuery.platform}
                   setPlatform={(platform) =>
@@ -108,11 +90,30 @@ function App() {
                   <GameGrid gameQuery={gameQuery} />
                 </Item>
               </Grid>
-            )}
-          </Grid>
-        </Box>
-      </ThemeProvider>
-    </>
+            </>
+          ) : (
+            <Grid item xs={11} sx={{ margin: "0 auto" }}>
+              <GameHeading gameQuery={gameQuery} />
+              <PlatformSelector
+                platform={gameQuery.platform}
+                setPlatform={(platform) =>
+                  setGameQuery({ ...gameQuery, platform })
+                }
+              />
+              <SortSelector
+                sortOrder={gameQuery.sortOrder}
+                onSelectSortOrder={(sortOrder) =>
+                  setGameQuery({ ...gameQuery, sortOrder })
+                }
+              />
+              <Item>
+                <GameGrid gameQuery={gameQuery} />
+              </Item>
+            </Grid>
+          )}
+        </Grid>
+      </Box>
+    </ThemeProvider>
   );
 }
 
