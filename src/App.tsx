@@ -29,7 +29,8 @@ const Item = styled(Paper)(({ theme }) => ({
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
-  sortOrder: string
+  sortOrder: string;
+  searchText: string;
 }
 
 function App() {
@@ -49,9 +50,16 @@ function App() {
       <ThemeProvider theme={themeMode}>
         <CssBaseline />
         <Box sx={{ flexGrow: 1 }}>
+          <ToastContainer />
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <NavBar toggleMode={toggleMode} themeMode={themeMode} />
+              <NavBar
+                toggleMode={toggleMode}
+                themeMode={themeMode}
+                onSubmit={(searchText) =>
+                  setGameQuery({ ...gameQuery, searchText })
+                }
+              />
             </Grid>
 
             {!isMobile ? (
@@ -81,7 +89,6 @@ function App() {
                     <GameGrid gameQuery={gameQuery} />
                   </Item>
                 </Grid>
-                <ToastContainer />
               </>
             ) : (
               <Grid item xs={11} sx={{ margin: "0 auto" }}>

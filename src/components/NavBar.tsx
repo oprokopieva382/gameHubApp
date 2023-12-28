@@ -17,9 +17,10 @@ import {
 export type ThemePropsType = {
   toggleMode: () => void;
   themeMode: ThemeType;
+  onSubmit?: (searchText: string) => void;
 };
 
-export const NavBar: FC<ThemePropsType> = ({ toggleMode, themeMode }) => {
+export const NavBar: FC<ThemePropsType> = ({ toggleMode, themeMode, onSubmit }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
 
@@ -78,7 +79,7 @@ export const NavBar: FC<ThemePropsType> = ({ toggleMode, themeMode }) => {
           >
             Game Hub
           </Typography>
-          <SearchNavBar />
+          <SearchNavBar onSubmit={onSubmit} />
           <Box sx={{ flexGrow: 1 }} />
           <Box
             sx={{
