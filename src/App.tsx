@@ -19,6 +19,7 @@ import { PlatformSelector } from "./components/PlatformSelector";
 import { Platform } from "./components/hooks/usePlatforms";
 import { SortSelector } from "./components/SortSelector";
 import { GameHeading } from "./components/GameHeading";
+import { GameSelectors } from "./components/GameSelectors";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -74,17 +75,9 @@ function App() {
               </Grid>
               <Grid item xs={9.5}>
                 <GameHeading gameQuery={gameQuery} />
-                <PlatformSelector
-                  platform={gameQuery.platform}
-                  setPlatform={(platform) =>
-                    setGameQuery({ ...gameQuery, platform })
-                  }
-                />
-                <SortSelector
-                  sortOrder={gameQuery.sortOrder}
-                  onSelectSortOrder={(sortOrder) =>
-                    setGameQuery({ ...gameQuery, sortOrder })
-                  }
+                <GameSelectors
+                  gameQuery={gameQuery}
+                  setGameQuery={setGameQuery}
                 />
                 <Item>
                   <GameGrid gameQuery={gameQuery} />
@@ -94,17 +87,9 @@ function App() {
           ) : (
             <Grid item xs={11} sx={{ margin: "0 auto" }}>
               <GameHeading gameQuery={gameQuery} />
-              <PlatformSelector
-                platform={gameQuery.platform}
-                setPlatform={(platform) =>
-                  setGameQuery({ ...gameQuery, platform })
-                }
-              />
-              <SortSelector
-                sortOrder={gameQuery.sortOrder}
-                onSelectSortOrder={(sortOrder) =>
-                  setGameQuery({ ...gameQuery, sortOrder })
-                }
+              <GameSelectors
+                gameQuery={gameQuery}
+                setGameQuery={setGameQuery}
               />
               <Item>
                 <GameGrid gameQuery={gameQuery} />

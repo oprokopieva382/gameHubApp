@@ -24,7 +24,7 @@ export const GameGrid: FC<GameGridProps> = ({ gameQuery }) => {
   return (
     <Grid
       container
-      sx={{ flexGrow: 1, columnGap: 5, rowGap: 5, justifyContent: "center" }}
+      sx={{ flexGrow: 1, columnGap: 5, rowGap: 5, justifyContent: "center", padding: "20px 5px" }}
     >
       {isLoading &&
         skeletons.map((skeleton, i) => (

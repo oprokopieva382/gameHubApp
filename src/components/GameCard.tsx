@@ -19,7 +19,7 @@ type GameCardType = {
 export const GameCard: FC<GameCardType> = ({ game }) => {
   const theme = useTheme();
   return (
-    <Card sx={{ boxShadow: theme.shadows[6] }}>
+    <Card sx={{ boxShadow: theme.shadows[6]}}>
       <CardMedia
         sx={{ height: 160 }}
         image={getCroppedImageUrl(game.background_image)}
