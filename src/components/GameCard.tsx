@@ -12,7 +12,6 @@ import { PlatformIconList } from "./PlatformIconList";
 import { CriticScore } from "./CriticScore";
 import getCroppedImageUrl from "../services/getCroppedImageUrl";
 
-
 type GameCardType = {
   game: Game;
 };
@@ -27,20 +26,20 @@ export const GameCard: FC<GameCardType> = ({ game }) => {
         title={game.name}
         src={game.name}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
-          {game.name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Description of game in future
-        </Typography>
-      </CardContent>
       <Box sx={{ display: "flex", justifyContent: "space-between", p: 2 }}>
         <PlatformIconList
           platforms={game.parent_platforms.map((p) => p.platform)}
         />
         <CriticScore score={game.metacritic} />
       </Box>
+      <CardContent>
+        <Typography gutterBottom variant="h6" component="div">
+          {game.name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Released: {game.released}
+        </Typography>
+      </CardContent>
     </Card>
   );
 };
