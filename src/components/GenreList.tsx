@@ -46,26 +46,11 @@ export const GenreList: FC<GenreListProps> = ({
   setSelectedGenre,
   selectedGenre,
 }) => {
-  const { data, isLoading, error } = useGenre();
-
-  useEffect(() => {
-    if (error) {
-      errorMessage("Something went wrong");
-    }
-  }, [error]);
-
-  if (isLoading)
-    return (
-      <CenteredBox>
-        <CircleLoader color="#90EE90" />
-      </CenteredBox>
-    );
-
-
+  const { data } = useGenre();
 
   return (
     <List>
-      <Typography variant="h5" style={{ padding: "10px"}}>
+      <Typography variant="h5" style={{ padding: "10px" }}>
         Genres
       </Typography>
       {data.map((genre) => (
