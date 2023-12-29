@@ -14,6 +14,4 @@ const darkTheme: ThemeType = createTheme({
   },
 });
 
-
-
 export { lightTheme, darkTheme };
