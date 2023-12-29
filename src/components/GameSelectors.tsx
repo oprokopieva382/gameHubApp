@@ -1,8 +1,8 @@
-import Box from "@mui/material/Box";
 import { PlatformSelector } from "./PlatformSelector";
 import { SortSelector } from "./SortSelector";
 import { GameQuery } from "../App";
 import { FC } from "react";
+import { StyledBox } from "../assets/style/GameSelectorsStyle";
 
 interface GameSelectorsProps {
   gameQuery: GameQuery;
@@ -11,7 +11,7 @@ interface GameSelectorsProps {
 
 export const GameSelectors: FC<GameSelectorsProps> = ({ gameQuery, setGameQuery }) => {
   return (
-    <Box style={{marginBottom: "2%"}}>
+    <StyledBox>
       <PlatformSelector
         platform={gameQuery.platform}
         setPlatform={(platform) => setGameQuery({ ...gameQuery, platform })}
@@ -22,6 +22,6 @@ export const GameSelectors: FC<GameSelectorsProps> = ({ gameQuery, setGameQuery 
           setGameQuery({ ...gameQuery, sortOrder })
         }
       />
-    </Box>
+    </StyledBox>
   );
 };
