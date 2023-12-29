@@ -1,17 +1,15 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  Skeleton,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { useTheme } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Skeleton from "@mui/material/Skeleton";
+import Typography from "@mui/material/Typography";
+import { StyledBox } from "../assets/style/CardSkeletonStyle";
 
 export const CardSkeleton = () => {
   const theme = useTheme();
   return (
-    <Card sx={{ boxShadow: theme.shadows[6]}}>
-      <Skeleton variant="rectangular" height={160}/>
+    <Card sx={{ boxShadow: theme.shadows[6] }}>
+      <Skeleton variant="rectangular" height={160} />
       <CardContent sx={{ height: 100 }}>
         <Typography gutterBottom variant="h6" component="div">
           <Skeleton variant="text" />
@@ -20,9 +18,9 @@ export const CardSkeleton = () => {
           <Skeleton variant="text" />
         </Typography>
       </CardContent>
-      <Box sx={{ display: "flex", justifyContent: "space-between", p: 2 }}>
+      <StyledBox>
         <Skeleton variant="text" />
-      </Box>
+      </StyledBox>
     </Card>
   );
 };
