@@ -1,9 +1,8 @@
-import { useState, MouseEvent, FC } from "react";
+import { useState, FC } from "react";
 import logo from "../assets/logo.webp";
 import { ColorModeSwitch } from "./ColorModeSwitch";
 import { ThemeType } from "../theme";
 import { SearchNavBar } from "./SearchNavBar";
-import { ProfileNavBar } from "./ProfileNavBar";
 import {
   AppBar,
   Box,
@@ -20,13 +19,13 @@ export type ThemePropsType = {
   onSubmit?: (searchText: string) => void;
 };
 
-export const NavBar: FC<ThemePropsType> = ({ toggleMode, themeMode, onSubmit }) => {
+export const NavBar: FC<ThemePropsType> = ({
+  toggleMode,
+  themeMode,
+  onSubmit,
+}) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
-
-  const handleProfileMenuOpen = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleMenuClose = () => {
     setAnchorEl(null);
@@ -84,15 +83,11 @@ export const NavBar: FC<ThemePropsType> = ({ toggleMode, themeMode, onSubmit }) 
           <Box
             sx={{
               display: "flex",
-              flexDirection: { xs: "row" }, 
+              flexDirection: { xs: "row" },
               alignItems: "center",
             }}
           >
             <ColorModeSwitch toggleMode={toggleMode} themeMode={themeMode} />
-            <ProfileNavBar
-              menuId={menuId}
-              handleProfileMenuOpen={handleProfileMenuOpen}
-            />
           </Box>
         </Toolbar>
       </AppBar>
