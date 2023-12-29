@@ -1,14 +1,11 @@
 import { Genre, useGenre } from "./hooks/useGenre";
-import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import getCroppedImageUrl from "./../services/getCroppedImageUrl";
 import { styled as styledMUI } from "@mui/system";
-import CircleLoader from "react-spinners/CircleLoader";
-import { errorMessage } from "../utils/notification";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import Typography from "@mui/material/Typography";
 
 const StyledButton = styledMUI(Button)<{ customcolor?: string }>`
@@ -30,13 +27,6 @@ margin: 0 auto;
     color: ${(props) => (props.customcolor ? props.customcolor : "inherit")};
   }
 `;
-const CenteredBox = styledMUI(Box)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-`;
-
 interface GenreListProps {
   setSelectedGenre: (genre: Genre) => void;
   selectedGenre: Genre | null;
