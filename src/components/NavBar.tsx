@@ -84,7 +84,7 @@ export const NavBar: FC<ThemePropsType> = ({ toggleMode, themeMode, onSubmit }) 
           <Box
             sx={{
               display: "flex",
-              flexDirection: { xs: "row" }, // Change the direction for small screens
+              flexDirection: { xs: "row" }, 
               alignItems: "center",
             }}
           >
