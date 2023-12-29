@@ -1,12 +1,8 @@
-import {
-  Box,
-  CssBaseline,
-  Grid,
-  Paper,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-import { ThemeProvider, styled } from "@mui/material/styles";
+import { useMediaQuery, useTheme } from "@mui/material";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import { ThemeProvider } from "@mui/material/styles";
 import { NavBar } from "./components/NavBar";
 import { useState } from "react";
 import { darkTheme, lightTheme } from "./theme";
@@ -15,19 +11,10 @@ import { GenreList } from "./components/GenreList";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Genre } from "./components/hooks/useGenre";
-import { PlatformSelector } from "./components/PlatformSelector";
 import { Platform } from "./components/hooks/usePlatforms";
-import { SortSelector } from "./components/SortSelector";
 import { GameHeading } from "./components/GameHeading";
 import { GameSelectors } from "./components/GameSelectors";
-
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.mode,
-}));
-
+import { Item } from "./assets/style/AppStyle";
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
@@ -35,7 +22,7 @@ export interface GameQuery {
   searchText: string;
 }
 
-function App() {
+export const App = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [mode, setMode] = useState(false);
@@ -100,6 +87,4 @@ function App() {
       </Box>
     </ThemeProvider>
   );
-}
-
-export default App;
+};
