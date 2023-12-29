@@ -24,8 +24,12 @@
 
 ## App View
 
-<a name="sneak-peek"></a>
+![HomePage](public/Screenshot.png)
 
-<img src="./Screenshot" alt="Screenshot of app"> 
+## License
+Please refer to the LICENSE in the repo.
+
+## Questions
+If you have any questions find me on [GitHub](https://github.com/oprokopieva382) or feel free email me oprokopieva382@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
