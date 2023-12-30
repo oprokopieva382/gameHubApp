@@ -1,10 +1,10 @@
+import { FC, useEffect } from "react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Platform, usePlatforms } from "./hooks/usePlatforms";
 import { errorMessage } from "../utils/notification";
-import { FC, useEffect } from "react";
 
 interface PlatformSelectorProps {
   platform: Platform | null;

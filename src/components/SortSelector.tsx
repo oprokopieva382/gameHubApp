@@ -1,8 +1,8 @@
+import { FC } from "react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { FC } from "react";
 interface SortSelectorProps {
   sortOrder: string;
   onSelectSortOrder: (sortOrder: string) => void;
@@ -19,6 +19,7 @@ export const SortSelector: FC<SortSelectorProps> = ({
     { value: "-metacritic", label: "Popularity" },
     { value: "-rating", label: "Average rating" },
   ];
+  
   return (
     <FormControl variant="standard" sx={{ m: 1, minWidth: 180 }}>
       <InputLabel id="simple-select-standard-label">

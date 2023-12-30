@@ -1,5 +1,5 @@
-import SearchIcon from "@mui/icons-material/Search";
 import { ChangeEvent, FC, FormEvent, useState } from "react";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   SearchForm,
   SearchIconWrapper,
