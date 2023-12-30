@@ -3,9 +3,9 @@ import logo from "../assets/logo.webp";
 import { ColorModeSwitch } from "./ColorModeSwitch";
 import { ThemeType } from "../theme";
 import { SearchNavBar } from "./SearchNavBar";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
 import {
-  AppBar,
-  Box,
   IconButton,
   Menu,
   MenuItem,

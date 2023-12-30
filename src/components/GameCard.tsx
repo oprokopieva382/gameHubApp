@@ -15,6 +15,7 @@ type GameCardType = {
 
 export const GameCard: FC<GameCardType> = ({ game }) => {
   const theme = useTheme();
+  
   return (
     <Card sx={{ boxShadow: theme.shadows[6] }}>
       <StyledCardMedia

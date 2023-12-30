@@ -1,7 +1,7 @@
+import { FC } from "react";
 import { PlatformSelector } from "./PlatformSelector";
 import { SortSelector } from "./SortSelector";
 import { GameQuery } from "../App";
-import { FC } from "react";
 import { StyledBox } from "../assets/style/GameSelectorsStyle";
 
 interface GameSelectorsProps {
