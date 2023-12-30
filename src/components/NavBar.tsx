@@ -5,13 +5,11 @@ import { ThemeType } from "../theme";
 import { SearchNavBar } from "./SearchNavBar";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import {
-  IconButton,
-  Menu,
-  MenuItem,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 
 export type ThemePropsType = {
   toggleMode: () => void;
